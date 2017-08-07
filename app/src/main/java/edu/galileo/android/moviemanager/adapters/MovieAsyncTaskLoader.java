@@ -23,7 +23,7 @@ import edu.galileo.android.moviemanager.models.Movie;
  * Created by noh on 8/7/17.
  */
 
-public class MovieAsyncTaskLoader extends AsyncTask<URL, Integer, ArrayList<Movie>> {
+public class MovieAsyncTaskLoader extends AsyncTask<String, Integer, ArrayList<Movie>> {
     private static String TAG_MovieAsyncTaskLoader="MovieAsyncTaskLoader";
     private Context context;
     private MovieRecyclerViewAdapter madapter;
@@ -38,61 +38,34 @@ public class MovieAsyncTaskLoader extends AsyncTask<URL, Integer, ArrayList<Movi
     }
 
     @Override
-    protected ArrayList<Movie> doInBackground(URL... urls) {
+    protected ArrayList<Movie> doInBackground(String... params) {
         Log.e(TAG_MovieAsyncTaskLoader,getJson());
 
-        return ConvertJsontoMovieList(getJson());
+        return ConvertJsontoMovieList(getJson(params));
     }
 
     @Override
     protected void onPostExecute(ArrayList<Movie> movies) {
         madapter.movies.clear();
         madapter.movies.addAll(movies);
-       madapter.notifyDataSetChanged();
-
-    }
-
-
-    private ArrayList<Movie> ConvertJsontoMovieList(String jsonStr)  {
-
-        ArrayList<Movie> arrayList = new ArrayList<Movie>();
-        JSONArray jsonarray = null;
-        try {
-
-            jsonarray = new JSONObject(jsonStr).getJSONArray("results");
-            Log.e(TAG_MovieAsyncTaskLoader,jsonarray.get(0).toString());
-        for (int i = 0; i < jsonarray.length(); i++) {
-
-            Log.d(TAG_MovieAsyncTaskLoader,i+" iteration");
-            JSONObject jsonobject = jsonarray.getJSONObject(i);
-            String id = jsonobject.getString("id");
-            String title = jsonobject.getString("title");
-            String overview=jsonobject.getString("overview");
-            String voteAverage=jsonobject.getString("vote_average");
-            String voteCount=jsonobject.getString("vote_count");
-            String posterPath=jsonobject.getString("poster_path");
-            String backdropPath=jsonobject.getString("backdrop_path");
-
-            Movie movie = new Movie(id,title,overview,Float.valueOf(voteAverage),Float.valueOf(voteCount),posterPath,backdropPath);
-            arrayList.add(movie);
-
-        }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        Log.e(TAG_MovieAsyncTaskLoader,arrayList.get(0).getOverview());
-        return arrayList;
+        madapter.notifyDataSetChanged();
 
     }
 
 
 
-    public static String getJson() {
+    public static String getJson(String... params) {
 
         URL url;
         StringBuffer response = new StringBuffer();
+        String APIKEY ="02d88f658f2fa6619822e37c0a6db5ac";
+//        String category=params[0];
+        String category="now_playing";
+
+        String queryString =String.format("https://api.themoviedb.org/3/movie/%s?api_key=%s&language=en-US&page=1",category,APIKEY);
+        Log.e(TAG_MovieAsyncTaskLoader,queryString);
         try {
-            url = new URL("https://api.themoviedb.org/3/movie/now_playing?api_key=02d88f658f2fa6619822e37c0a6db5ac&language=en-US&page=1");
+            url = new URL(queryString);
         } catch (MalformedURLException e) {
             throw new IllegalArgumentException("invalid url");
         }
@@ -124,12 +97,41 @@ public class MovieAsyncTaskLoader extends AsyncTask<URL, Integer, ArrayList<Movi
             if (conn != null) {
                 conn.disconnect();
             }
-
-            //Here is your json in string format
+            //Here is  json in string format
             String responseJSON = response.toString();
             return responseJSON;
         }
+    }
 
+    private ArrayList<Movie> ConvertJsontoMovieList(String jsonStr)  {
+
+        ArrayList<Movie> arrayList = new ArrayList<Movie>();
+        JSONArray jsonarray = null;
+        try {
+
+            jsonarray = new JSONObject(jsonStr).getJSONArray("results");
+             Log.e(TAG_MovieAsyncTaskLoader,jsonarray.get(0).toString());
+            for (int i = 0; i < jsonarray.length(); i++) {
+
+                 Log.d(TAG_MovieAsyncTaskLoader,i+" iteration");
+                JSONObject jsonobject = jsonarray.getJSONObject(i);
+                String id = jsonobject.getString("id");
+                String title = jsonobject.getString("title");
+                String overview=jsonobject.getString("overview");
+                String voteAverage=jsonobject.getString("vote_average");
+                String voteCount=jsonobject.getString("vote_count");
+                String posterPath=jsonobject.getString("poster_path");
+                String backdropPath=jsonobject.getString("backdrop_path");
+
+                Movie movie = new Movie(id,title,overview,Float.valueOf(voteAverage),Float.valueOf(voteCount),posterPath,backdropPath);
+                arrayList.add(movie);
+
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        //Log.e(TAG_MovieAsyncTaskLoader,arrayList.get(0).getOverview());
+        return arrayList;
 
     }
 
