@@ -33,6 +33,7 @@ public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<MovieRecycler
         this.movies = movies;
         this.context = context;
 
+
     }
 
     private Context getContext(){

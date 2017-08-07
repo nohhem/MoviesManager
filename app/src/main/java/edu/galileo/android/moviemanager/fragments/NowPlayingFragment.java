@@ -14,7 +14,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import edu.galileo.android.moviemanager.MovieAsyncTaskLoader;
+import edu.galileo.android.moviemanager.adapters.MovieAsyncTaskLoader;
 import edu.galileo.android.moviemanager.R;
 import edu.galileo.android.moviemanager.adapters.MovieRecyclerViewAdapter;
 import edu.galileo.android.moviemanager.models.Movie;
@@ -28,6 +28,7 @@ public class NowPlayingFragment extends Fragment {
     @BindView(R.id.rvMovies)
     RecyclerView rvMovies;
     private List<Movie> movies;
+    private MovieRecyclerViewAdapter madapter;
 
     public NowPlayingFragment() {
         // Required empty public constructor
@@ -47,8 +48,8 @@ public class NowPlayingFragment extends Fragment {
         rvMovies.setHasFixedSize(true);
         rvMovies.setLayoutManager(llm);
 
-        MovieRecyclerViewAdapter adapter = new MovieRecyclerViewAdapter(getContext(), movies);
-        rvMovies.setAdapter(adapter);
+         madapter = new MovieRecyclerViewAdapter(getContext(), movies);
+         rvMovies.setAdapter(madapter);
 
         return view;
     }
@@ -56,7 +57,7 @@ public class NowPlayingFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        MovieAsyncTaskLoader movieAsyncTaskLoader = new MovieAsyncTaskLoader(this.getContext());
+        MovieAsyncTaskLoader movieAsyncTaskLoader = new MovieAsyncTaskLoader(this.getContext(),madapter);
         movieAsyncTaskLoader.execute();
     }
 

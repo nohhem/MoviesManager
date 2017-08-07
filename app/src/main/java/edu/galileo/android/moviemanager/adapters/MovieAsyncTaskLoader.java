@@ -1,4 +1,4 @@
-package edu.galileo.android.moviemanager;
+package edu.galileo.android.moviemanager.adapters;
 
 
 import android.content.Context;
@@ -26,19 +26,29 @@ import edu.galileo.android.moviemanager.models.Movie;
 public class MovieAsyncTaskLoader extends AsyncTask<URL, Integer, ArrayList<Movie>> {
     private static String TAG_MovieAsyncTaskLoader="MovieAsyncTaskLoader";
     private Context context;
+    private MovieRecyclerViewAdapter madapter;
+
     public MovieAsyncTaskLoader(Context context) {
         this.context=context;
     }
+
+    public MovieAsyncTaskLoader(Context context, MovieRecyclerViewAdapter madapter) {
+
+        this.madapter=madapter;
+    }
+
     @Override
     protected ArrayList<Movie> doInBackground(URL... urls) {
         Log.e(TAG_MovieAsyncTaskLoader,getJson());
-        ConvertJsontoMovieList(getJson());
-        return null;
+
+        return ConvertJsontoMovieList(getJson());
     }
 
     @Override
     protected void onPostExecute(ArrayList<Movie> movies) {
-        super.onPostExecute(movies);
+        madapter.movies.clear();
+        madapter.movies.addAll(movies);
+       madapter.notifyDataSetChanged();
 
     }
 
