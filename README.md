@@ -14,3 +14,4 @@
     - Drawer
 * AsyncTask
 
+-<img src='https://github.com/IsabelPalomar/MovieManagerApp/blob/master/MovieManager.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
