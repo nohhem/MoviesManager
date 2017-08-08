@@ -1,4 +1,4 @@
-package edu.galileo.android.moviemanager.adapters;
+package noh.android.moviemanager.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,8 +17,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import edu.galileo.android.moviemanager.R;
-import edu.galileo.android.moviemanager.activities.MovieDetailActivity;
-import edu.galileo.android.moviemanager.models.Movie;
+import noh.android.moviemanager.activities.MovieDetailActivity;
+import noh.android.moviemanager.models.Movie;
 
 /**
  * Created by isabelpalomar.

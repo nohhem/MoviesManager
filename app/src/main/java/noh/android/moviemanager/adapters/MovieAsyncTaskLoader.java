@@ -1,4 +1,4 @@
-package edu.galileo.android.moviemanager.adapters;
+package noh.android.moviemanager.adapters;
 
 
 import android.content.Context;
@@ -17,7 +17,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-import edu.galileo.android.moviemanager.models.Movie;
+import noh.android.moviemanager.models.Movie;
 
 /**
  * Created by noh on 8/7/17.
@@ -59,8 +59,8 @@ public class MovieAsyncTaskLoader extends AsyncTask<String, Integer, ArrayList<M
         URL url;
         StringBuffer response = new StringBuffer();
         String APIKEY ="02d88f658f2fa6619822e37c0a6db5ac";
-//        String category=params[0];
-        String category="now_playing";
+        String category=params[0];
+        //String category="now_playing";
 
         String queryString =String.format("https://api.themoviedb.org/3/movie/%s?api_key=%s&language=en-US&page=1",category,APIKEY);
         Log.e(TAG_MovieAsyncTaskLoader,queryString);

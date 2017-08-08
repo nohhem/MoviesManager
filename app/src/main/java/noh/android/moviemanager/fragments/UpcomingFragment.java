@@ -1,4 +1,4 @@
-package edu.galileo.android.moviemanager.fragments;
+package noh.android.moviemanager.fragments;
 
 
 import android.content.Context;
@@ -19,9 +19,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import edu.galileo.android.moviemanager.R;
-import edu.galileo.android.moviemanager.adapters.MovieAsyncTaskLoader;
-import edu.galileo.android.moviemanager.adapters.MovieRecyclerViewAdapter;
-import edu.galileo.android.moviemanager.models.Movie;
+import noh.android.moviemanager.adapters.MovieAsyncTaskLoader;
+import noh.android.moviemanager.adapters.MovieRecyclerViewAdapter;
+import noh.android.moviemanager.models.Movie;
 
 /**
  * A simple {@link Fragment} subclass.

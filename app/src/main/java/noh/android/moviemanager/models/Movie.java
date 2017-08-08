@@ -1,4 +1,4 @@
-package edu.galileo.android.moviemanager.models;
+package noh.android.moviemanager.models;
 
 
 import java.io.Serializable;

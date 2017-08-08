@@ -1,4 +1,4 @@
-package edu.galileo.android.moviemanager.activities;
+package noh.android.moviemanager.activities;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -14,7 +14,7 @@ import com.squareup.picasso.Picasso;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import edu.galileo.android.moviemanager.R;
-import edu.galileo.android.moviemanager.models.Movie;
+import noh.android.moviemanager.models.Movie;
 
 public class MovieDetailActivity extends AppCompatActivity {
 
