@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,24 +66,9 @@ public class NowPlayingFragment extends Fragment {
         // If there is a network connection, fetch data
         if (networkInfo != null && networkInfo.isConnected()) {
             MovieAsyncTaskLoader movieAsyncTaskLoader = new MovieAsyncTaskLoader(this.getContext(),madapter);
-            movieAsyncTaskLoader.execute("now_playing");
+            movieAsyncTaskLoader.execute("now_playing","testString");
         } else {
-            Toast.makeText(this.getContext(),"there is no connection",Toast.LENGTH_SHORT).show();
-        }
-
-
-
-
-
-
-
-    }
-    public boolean isInternetAvailable() {
-        try {
-            InetAddress ipAddr = InetAddress.getByName("google.com"); //You can replace it with your name
-            return !ipAddr.equals("");
-        } catch (Exception e) {
-            return false;
+            Toast.makeText(this.getContext(),"there is no connection",Toast.LENGTH_LONG).show();
         }
 
     }

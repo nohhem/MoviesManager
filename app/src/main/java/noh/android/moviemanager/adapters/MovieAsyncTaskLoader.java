@@ -39,7 +39,7 @@ public class MovieAsyncTaskLoader extends AsyncTask<String, Integer, ArrayList<M
 
     @Override
     protected ArrayList<Movie> doInBackground(String... params) {
-        Log.e(TAG_MovieAsyncTaskLoader,getJson());
+        Log.e(TAG_MovieAsyncTaskLoader,getJson(params));
 
         return ConvertJsontoMovieList(getJson(params));
     }
@@ -59,8 +59,9 @@ public class MovieAsyncTaskLoader extends AsyncTask<String, Integer, ArrayList<M
         URL url;
         StringBuffer response = new StringBuffer();
         String APIKEY ="02d88f658f2fa6619822e37c0a6db5ac";
-       // String category=params[0];
-        String category="now_playing";
+       // Log.e(TAG_MovieAsyncTaskLoader,params[0].toString());
+        String category=params[0];
+       // String category="now_playing";
 
         String queryString =String.format("https://api.themoviedb.org/3/movie/%s?api_key=%s&language=en-US&page=1",category,APIKEY);
         Log.e(TAG_MovieAsyncTaskLoader,queryString);
@@ -112,7 +113,6 @@ public class MovieAsyncTaskLoader extends AsyncTask<String, Integer, ArrayList<M
             jsonarray = new JSONObject(jsonStr).getJSONArray("results");
              Log.e(TAG_MovieAsyncTaskLoader,jsonarray.get(0).toString());
             for (int i = 0; i < jsonarray.length(); i++) {
-
                  Log.d(TAG_MovieAsyncTaskLoader,i+" iteration");
                 JSONObject jsonobject = jsonarray.getJSONObject(i);
                 String id = jsonobject.getString("id");
