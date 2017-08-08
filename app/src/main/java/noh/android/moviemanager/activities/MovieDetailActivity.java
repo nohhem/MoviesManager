@@ -13,7 +13,7 @@ import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import edu.galileo.android.moviemanager.R;
+import noh.android.moviemanager.R;
 import noh.android.moviemanager.models.Movie;
 
 public class MovieDetailActivity extends AppCompatActivity {

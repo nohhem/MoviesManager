@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="edu.galileo.android.moviemanager">
+    package="noh.android.moviemanager">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -29,7 +29,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="edu.galileo.android.moviemanager.noh.android.moviemanager.activities.MainActivity" />
+                android:value="noh.android.moviemanager.activities.MainActivity" />
         </activity>
     </application>
 

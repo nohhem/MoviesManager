@@ -59,8 +59,8 @@ public class MovieAsyncTaskLoader extends AsyncTask<String, Integer, ArrayList<M
         URL url;
         StringBuffer response = new StringBuffer();
         String APIKEY ="02d88f658f2fa6619822e37c0a6db5ac";
-        String category=params[0];
-        //String category="now_playing";
+       // String category=params[0];
+        String category="now_playing";
 
         String queryString =String.format("https://api.themoviedb.org/3/movie/%s?api_key=%s&language=en-US&page=1",category,APIKEY);
         Log.e(TAG_MovieAsyncTaskLoader,queryString);
