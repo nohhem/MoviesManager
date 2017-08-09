@@ -55,6 +55,8 @@ public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<MovieRecycler
 
         holder.tvTitle.setText(movie.getTitle());
         holder.tvOverview.setText(movie.getOverview());
+       // holder.tvOverview.setHint("just a hint");
+
 
         Picasso.with(getContext())
                 .load(movie.getPosterPath())
@@ -76,6 +78,9 @@ public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<MovieRecycler
         TextView tvOverview;
         @BindView(R.id.cvMovie)
         CardView cvMovie;
+
+
+
 
         ViewHolder(View view) {
             super(view);

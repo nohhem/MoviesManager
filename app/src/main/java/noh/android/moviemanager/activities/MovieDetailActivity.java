@@ -13,6 +13,7 @@ import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import noh.android.moviemanager.R;
 import noh.android.moviemanager.models.Movie;
 
@@ -23,6 +24,12 @@ public class MovieDetailActivity extends AppCompatActivity {
     ImageView ivMovieBackdrop;
     @BindView(R.id.tvOverview)
     TextView tvOverview;
+    @BindView(R.id.tvRating)
+    TextView tvRating;
+    @BindView(R.id.tvVotesCount)
+    TextView tvVotesCount;
+    @BindView(R.id.ivMovieImage)
+    ImageView ivMovieImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,11 +54,16 @@ public class MovieDetailActivity extends AppCompatActivity {
             movie = (Movie) extras.getSerializable("MOVIE");
             this.setTitle(movie.getTitle());
             tvOverview.setText(movie.getOverview());
+            tvVotesCount.setText(movie.getVoteCount() + " Votes");
+            tvRating.setText(movie.getVoteAverage() + " /10.0");
 
-            Picasso.with(this)
-                    .load(movie.getBackdropPath())
-                    .into(ivMovieBackdrop);
+            Picasso.with(this).load(movie.getPosterPath()).into(ivMovieImage);
+            Picasso.with(this).load(movie.getBackdropPath()).into(ivMovieBackdrop);
 
         }
+    }
+
+    @OnClick(R.id.ivRateThisStar)
+    public void onViewClicked() {
     }
 }
